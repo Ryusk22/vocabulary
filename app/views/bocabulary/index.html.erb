@@ -1,2 +1,23 @@
-<h1 class="title">Main menu</h1>
-<p>Find me in app/views/bocabulary/index.html.erb</p>
+<div class="container">
+  <h1 class="title">Main menu</h1>
+  <p class="subtitle">下記のメニューよりクリックしてください</p>
+  <!-- <a class='' href="">新規ユーザー作成</a　class >
+  <a class='' href="">単語帳</a>
+  <a class='' href="">ランキング</a>
+  <a class='' href="">単語マスタメンテナンス</a> -->
+  <ul class="title_menu">
+    <li>
+      <%= link_to 'トップページ',  root_path %>
+    </li>
+    <li>
+      <%= link_to '単語帳',  root_path %>
+    </li>
+    <li>
+      <%= link_to 'ランキング',  root_path %>
+    </li>
+    <li>
+      <%= link_to '単語マスタメンテナンス', root_path %>
+    </li>
+  </ul>
+</div>
+
