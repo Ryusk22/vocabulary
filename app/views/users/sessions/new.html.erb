@@ -1,4 +1,4 @@
-<div class="login_container">
+<div class="container">
   <h2 class="login_title">ログインしてね</h2>
   <% resource = User.new unless resource %>
   <%= form_for(resource, as: resource_name, url: user_session_path) do |f| %>
