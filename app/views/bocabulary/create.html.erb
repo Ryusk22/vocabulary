@@ -1,0 +1,23 @@
+<div class="container">
+  <h1 class="title">単語新規作成</h1>
+  <p class="subtitle">下記のメニューからお選びください</p>
+  <!-- <a class='' href="">新規ユーザー作成</a　class >
+  <a class='' href="">単語帳</a>
+  <a class='' href="">ランキング</a>
+  <a class='' href="">単語マスタメンテナンス</a> -->
+  <ul class="title_menu">
+    <li>
+      <%= link_to '新規作成', bocabulary_index_path, method: :post %>
+    </li>
+    <li>
+      <%= link_to '単語編集', bocabulary_path, method: :delete %>
+    </li>
+    <li>
+      <%= link_to '単語削除', edit_bocabulary_path  %>
+    </li>
+  </ul>
+
+  <%= link_to 'トップに戻る', root_path %>
+
+
+</div>

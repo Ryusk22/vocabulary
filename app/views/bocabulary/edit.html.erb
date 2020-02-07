@@ -1,0 +1,16 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLongTitle">単語を修正</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body" style="margin: 3em;">
+  <%= form_for @question, url: "/bocabulary/#{@question.id}/edit", html: { class: "form-inline" } do |f| %>
+    <%=  f.text_field :question, class:'form-control', placeholder: "単語"%>
+    <%=  f.text_field :discription, class:'form-control', placeholder: "単語の意味"%>
+    <%= f.submit "変更を保存する", class: "btn btn-primary" %>
+  <% end %>
+</div>
+<div class="modal-footer">
+  <%= link_to '閉じる', "/bocabulary/:#{current_user.id}" , class: "btn btn-secondary", data: {dismiss: "modal"} %>
+</div>

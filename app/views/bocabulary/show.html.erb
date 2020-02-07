@@ -1,0 +1,54 @@
+<div class="container">
+  <h1 class="title">単語マスタメンテナンス</h1>
+  <p class="subtitle" style="margin-top: 3em;  margin-bottom: 3em;"> 新規作成 </p>
+  <%= form_for @question, url: bocabulary_index_path, html: { class: "form-inline" } do |f| %>
+      <%=  f.text_field :question, class:'form-control', placeholder: "単語"%>
+      <%=  f.text_field :question, class:'form-control', placeholder: "単語の意味"%>
+      <%= f.submit "登録", class: "btn btn-primary" %>
+  <% end %>
+  <p class="subtitle" style="margin-top: 3em;"> 単語一覧 </p>
+  <% @questions.each.with_index(1) do |question, idx| %>
+    <div class="card" style="margin: 5rem;">
+      <div class="card-header">
+        <p class="" >No.<%= idx %></p>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"><%= question.question %></h5>
+        <p class="card-text"><%= question.discription %></p>
+
+          <div class="btn-group">
+            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              類義語
+            </button>
+            <div class="dropdown-menu">
+            <ul class="list-group">
+              <% question.question_similars.each do |similar| %>
+                <li class="dropdown-item list-group-item" style="margin: 1em;"><%= similar.similar_word %></li>
+              <% end %>
+            </ul>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#"></a>
+            </div>
+          </div>
+
+        <%= link_to '編集', "/bocabulary/#{question.id}/edit", class: "btn btn-primary", data: { toggle: 'modal', target: '#exampleModalCenter'} %>
+
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <!-------------------------
+                モーダルの中（edit.html.erb）
+              -------------------------->
+            </div>
+          </div>
+        </div>
+
+        <%= link_to '削除', "/bocabulary/#{question.id}" , class: "btn btn-primary",
+        data: { confirm: 'Are you sure?', method: 'delete', toggle: 'modal', target: '#exampleModalCenter'}%>
+      </div>
+    </div>
+  <%end%>
+  <%= link_to 'トップに戻る', root_path %>
+
+
+</div>
