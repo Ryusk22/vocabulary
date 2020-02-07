@@ -1,0 +1,63 @@
+<div class="container">
+  <h1 class="title">単語クイズ</h1>
+  <p class="subtitle" style="margin-top: 3em;  margin-bottom: 3em;"> 正しい単語の意味を選んでね </p>
+    <div class="card" style="margin: 5rem;">
+      <div class="card-header">
+      </div>
+      <% @questions.each.with_index(1) do |question, idx| %>
+        <%= form_for(:session, url: quiz_index_path) do |f| %>
+          <div class="card-body" style="margin: 5em; border: 1px solid lightgrey; padding: 3em;">
+            <h5 class="card-title"><%= question.question %></h5>
+            <!-- <% @answer = question.discription %> -->
+            
+            <p class="card-text">
+              <%= f.hidden_field :answer_id, :value => question.id %>
+              <label>
+                <%= f.radio_button :question, question.discription %> <%= question.discription %>
+              </label>
+              <label>
+                <%= f.radio_button :question, @wrong_question.sample.discription  %> <%= @wrong_question.sample.discription %>
+              </label>
+              <label>
+                <%= f.radio_button :question, @wrong_question.sample.discription %> <%= @wrong_question.sample.discription %>
+              </label>
+            </p>
+              <div class="btn-group">
+                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-right: 3em;">
+                  類義語
+                </button>
+                <div class="dropdown-menu">
+                <ul class="list-group">
+                  <% question.question_similars.each do |similar| %>
+                    <li class="dropdown-item list-group-item" style="margin: 1em;"><%= similar.similar_word %></li>
+                  <% end %>
+                </ul>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#"></a>
+                </div>
+                <!-- ーーーーーーーーー正解選択ーーーーーーーーーーー -->
+                <div class="input-group">
+                  </select>
+                  <div class="input-group-append">
+                    <%= f.submit "Answer", class: "btn btn-primary" %>
+                  </div>
+                </div>
+                <!-- ーーーーーーーーーーーーーーーーーーーーーーーー -->
+              </div>
+          </div>
+        <% end %>
+      <% end %>
+      </div>
+    <ul>
+      <li>
+        <%= link_to '単語マスタメンテナンス', "/bocabulary/:#{current_user.id}" %>
+      </li>
+      <li>
+        <%= link_to 'ランキング',  root_path %>
+      </li>
+    </ul>
+    <% if user_signed_in? %>
+    <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
+  <% end %>
+</div>
+
