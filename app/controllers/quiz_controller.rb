@@ -9,7 +9,9 @@ class QuizController < ApplicationController
 
   def index
     @questions  = Question.order("RANDOM()").sample(10)
-    @wrong_question = Question.all
+    @wrong_question1 = Question.order("RANDOM()").sample(10)
+    @wrong_question2 = Question.order("RANDOM()").sample(10)
+    # render json: { data: @questions }
   end
 
   def create
