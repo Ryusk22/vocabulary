@@ -132,8 +132,11 @@ class Quiz extends React.Component {
             <p>正解一覧</p>
             <ul className="list-group">
               {questions.map((question, index) => (
-                <li className="list-group-item"　key={index}>
-                  <p>第{index + 1}問:　{question.discription}</p>
+                <li className={`list-group-item
+                                ${question.question === userAnswers[index] ? "correct" : "incorrect"} 
+                              `}
+                    key={index}>
+                  <p>第{index + 1}問:　{question.discription} {question.question === userAnswers[index] ? "⭕️" : "🙅‍♂️"}  </p>
                   <p>正解:　{question.question}</p>
                   <p>回答:　{userAnswers[index]}</p>
                 </li>
