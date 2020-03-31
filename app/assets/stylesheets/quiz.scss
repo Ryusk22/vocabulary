@@ -1,3 +1,12 @@
 // Place all the styles related to the quiz controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.correct {
+  margin: 3em;
+}
+
+.incorrect {
+  margin: 3em;
+  background-color: #FFD5EC!important;
+}

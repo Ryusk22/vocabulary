@@ -8,11 +8,14 @@ class QuizController < ApplicationController
   end
 
   def index
-    @questions  = Question.all.limit(10)
-    @wrong_question = Question.all
+    @questions  = Question.order("RANDOM()").sample(10)
+    @wrong_question1 = Question.order("RANDOM()").sample(10)
+    @wrong_question2 = Question.order("RANDOM()").sample(10)
+    # render json: { data: @questions }
   end
 
   def create
+    binding.pry
     # if params[:answer] == params[:orig]
     #   session[:score] += 1
     # end

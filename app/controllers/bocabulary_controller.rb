@@ -9,11 +9,15 @@ class BocabularyController < ApplicationController
 
   def show
     @question = Question.new
-    @questions = Question.all
+    2.times { @question.question_similars.build}
+    @question.question_similars.build
+    @q = Question.ransack(params[:q])
+    @questions = @q.result(distinct: true).old
     @question_similars = QuestionSimilar.all
   end
 
   def create
+    binding.pry
     Question.create(create_params)
     redirect_to "/bocabulary/:#{current_user.id}"
   end
@@ -37,7 +41,7 @@ class BocabularyController < ApplicationController
   private
 
   def create_params
-    params.require(:question).permit(:question, :discription)
+    params.require(:question).permit(:question, :discription, question_similars_attributes:[:similar_word])
   end
 
   def update_params
